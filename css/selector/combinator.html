@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combinator selector</title>
+    <style>
+        /* 
+        * Decendant selector 
+          Mengambil semua element children walau sedalam apapun children dan di bungkus element apapun asalkan merupakan turunan dari parent elementnya 
+        */
+        .main p {
+            color: red;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        /*
+        * Child combinator
+          Mengambil element anak yang merupakan turunan lansung dari parentnya 
+        */
+        .main > qoute > p {
+            color: blue !important;
+
+        }
+        /* Next Sibling Combinator
+        Mengambil element setelah spesifik element yang berada di parent yang sama 
+        */
+        h1 + h2 {
+            color: green;
+        }
+
+        /*Subsequent-sibling Combinator
+          Mengambil semua element saudara dari parent yang sama
+        */
+        h1 ~ h2 {
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <qoute>
+            <p>child dalam qoute</p>
+            <a>
+                <p>child terdalam</p>
+            </a>
+        </qoute>
+        <p>child terluar</p>
+    </div>
+
+    <div class="parent">
+        <h1>Kawasaki Ucup</h1>
+        <h2>keyaru Dudung</h2>
+        <h2>keyaru Dudung</h2>
+        <h2>keyaru Dudung</h2>
+        <h2>keyaru Dudung</h2>
+    </div>
+
+</body>
+</html>

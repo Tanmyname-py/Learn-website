@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>atribute-selector</title>
+    <style>
+        /* Mengambil element berdasarkan atribute */
+        a[href="#"] {
+            color: red;
+            text-decoration: none;
+        }
+
+        /* Mengambil semua value atribute yang berisi flow, yang di pisahkan spasi tidak berlaku jika -> flow-new flow_new */
+        a[href~="flow"] {
+            color: cyan;
+            text-decoration: none;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Mengambil semua atribute yang di mulai dengan value text walupun di pisahkan oleh tanda hubung (-),tidak berlaku untuk spasi, tanda hubung (_),dan juga tidak berlaku jika valuenya tidak di awali spesifik value pada selector atribute pada contoh kasus di bawah dengan value text. */
+        p[class|="text"] {
+            color: green;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Mengambil semua atribute yang di mulai dengan spesifik value, hanya berlaku untuk value yang huruf awalnya sama di setiap atribute*/
+        p[class^="te"] {
+            font-weight: bold;
+            
+        }
+
+        /* Kebalikan dari ^ yang mengambil nilai awal yang sama untuk $ mengambil nilai akhir yang sama*/
+        p[class$="soup"] {
+            color: red;
+        }
+
+        /*Mengambil semua atribute yang berisi nilai spesifisk tidak peduli posisi awal dan akhir yang penting valuenya ada persis di setiap atribute*/
+        p[class*="up"] {
+            font-family: Arial, Helvetica, sans-serif;
+            color: green;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <a href="#">GO</a>   
+    <a href="flow">flow1</a> 
+    <a href="flow summer">flow2</a> 
+    <a href="flow new">flow3</a> 
+    <p class="textsoup">Hello</p>
+    <p class="text-second-soup">World</p>
+    <p class="test-soup">World</p>
+</body>
+</html>
