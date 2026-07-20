@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Belajar pseudo-elements</title>
+    <style>
+        :root {
+            --primary: #efefef;
+        }
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        #container {
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+        }
+        .hovers {
+            text-align: center;
+        }
+        .hovers:hover {
+            color: red;
+            background-color: brown;
+        }
+
+        .active:active {
+            /* color: blue; */
+            background-color: cyan;
+        }
+
+        .focus:focus {
+            border: red solid 1px;
+            border-radius: 10px;
+            outline: none;
+        }
+
+        .search-box {
+            margin: 100px;
+            width: 200px;
+            display: flex;
+        }
+
+        .search-box:focus-within {
+            /* border-color: dodgerblue; */
+            border: 1px solid;
+        }
+
+        .search-box > input {
+            outline: none;
+            border: none;
+
+        }
+
+        #container-2 {
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* mengambil child element pertama */
+        /* #container-2 p:first-child {
+            color: red;
+        } */
+
+        /* mengambil child element terakhir */
+        /* #container-2 p:last-child {
+            color: green;
+        } */
+
+        #container-2 p:only-child {
+            color: blue;
+        }
+
+        /* #container-2 span:only-of-type {
+            color: blue;
+        } */
+         /* selector element anak ke n (an + b)
+         * a - kelipatan 
+         * n - variabel yang otomatis diisi browser 0,1,2,3....
+         * b - offset/pergeseran awal 
+         * contoh 
+         2n + 1 
+         n =  0 -> 2(0) + 1 = 1;
+         n = 1 -> 2(1) + 1 = 1; 
+         */
+        #container-2 p:nth-child(-n+4) {
+            color: red;
+        }
+        input:checked {
+            outline: 2px solid green;
+        }
+        input:checked + label {
+            color: green;
+            font-weight: 500;
+        }
+
+    </style>
+</head>
+<body>
+     <!-- pseudo class interaksi berdasarkan state -->
+    <div id="container">
+        <p class="hovers">Hallo</p>
+        <p class="active">Hello world</p>
+        <input  type="text" class="focus" />
+        <input type="email" class="focus-visible">
+
+        <div class="search-box">
+            <input type="text" placeholder="search something... ">
+            <button onclick="alert(`hello`)">🧐</button>
+        </div>
+        <p>blue</p>
+    </div>
+
+    <div id="container-2">
+        <p>hallo dari child1</p>
+        <!-- <span>hello dari span</span> -->
+        <p>hallo dari child2</p>
+        <p>hallo dari child3</p>
+        <p>hallo dari child4</p>
+        <p>hallo dari child4</p>
+        <input id="inp" />
+        <input type="checkbox"> 
+        <label>saya setuju dengan syarat dan ketentuan</label>
+        <input type="text" class="required" required placeholder="Nama">
+        <inpu
+    </div>
+
+    <script>
+        const inp = document.getElementById("inp")
+
+        inp.disabled = false;
+    </script>
+</body>
+</html>
