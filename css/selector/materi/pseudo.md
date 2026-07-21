@@ -131,5 +131,3 @@ Contoh mengubah warna teks yang di-blok:
 ```
 
 ---
-
-Kalau mau, saya bisa buatkan **demo interaktif** (HTML+CSS) yang menampilkan semua pseudo selector ini secara visual biar lebih gampang lihat perbedaannya langsung — mau?

@@ -1,0 +1,3 @@
+To-do list dengan animasi saat item ditambah/dihapus
+Landing page dengan navbar sticky + smooth scroll
+Card gallery dengan hover effect dan filter kategori (grid + event listener buat filter)

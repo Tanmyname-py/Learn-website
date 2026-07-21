@@ -10,6 +10,8 @@
         }
         * {
             font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
         }
         #container {
             width: 100vw;
@@ -59,6 +61,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            border: 1px solid;
         }
 
         /* mengambil child element pertama */
@@ -71,10 +74,12 @@
             color: green;
         } */
 
+        /* Menargetkan elemen yang menjadi anak satu-satunya pada parentnya */
         #container-2 p:only-child {
             color: blue;
         }
 
+        /* Menargetkan tag berdasarkan type yang hanya ada satu-satunya di parentnya  */
         /* #container-2 span:only-of-type {
             color: blue;
         } */
@@ -90,14 +95,84 @@
         #container-2 p:nth-child(-n+4) {
             color: red;
         }
+
+        /* Aktif ketika user checkbox sudah tercentang */
         input:checked {
             outline: 2px solid green;
         }
+        /* Ketika checkbox di centang style label yang menjadi saudara input setelahnya */
         input:checked + label {
             color: green;
             font-weight: 500;
         }
 
+        div.myform {
+            display: flex;
+            align-items: center;
+            gap: 2px;
+        }
+        /* Aktif ketika input harus di isi. dengan menambahkan attr required pada tag input */
+        input.required:required {
+            outline: none;
+            border: 1px solid black;
+            margin-top: 5px;
+            border-radius: 5px;
+        }
+        input.required:required + label::after {
+            content: "*";
+            color: red;
+        }
+        /* Aktif ketika input mode focus saat user mengklik input */
+        input.required:focus {
+            border:  2px red solid;
+            border-radius: 5px;
+        }
+
+        /* Aktif untuk menstyle input yang di jadikan opsional */
+        input.opsional:optional {
+            border: 1px green solid;
+            outline: none;
+            border-radius: 10px;
+            text-align: center;
+            color: green;
+        }
+        /* aktif saat input valid sesuai patern */
+        input.chk:valid {
+            border: 1px solid green;
+        }
+
+        input.chk {
+            outline: none;
+            margin: 10px;
+        }
+        /* Aktif ketika input tidak invalid sesuai patern*/
+        input.chk:invalid {
+            border: 1px solid red;
+        }
+
+        /* input.srp::placeholder {
+            font-style: italic;
+            color:  green;
+        } */
+
+        /* aktif saat masih ada placeholder */
+        input.srp:placeholder-shown {
+            font-family: Arial, Helvetica, sans-serif;
+            border-color: #ccc;
+            outline: none;
+        }
+        /* aktif saat tidak ada placeholder|user mulai mengetik  */
+        input.srp:not(:placeholder-shown) {
+            font-family: serif;
+            border-color: red;
+            outline: none;
+        }
+        input:read-only {
+            color: blue;
+            outline: none;
+            border: none;
+            margin: 10px;
+        }
     </style>
 </head>
 <body>
@@ -125,8 +200,17 @@
         <input id="inp" />
         <input type="checkbox"> 
         <label>saya setuju dengan syarat dan ketentuan</label>
-        <input type="text" class="required" required placeholder="Nama">
-        <inpu
+        <div class="myform">
+            <input type="text" class="required" required placeholder="Nama">
+            <label for="required"></label>
+        </div>
+        <input type="text" class="opsional" placeholder="Nama tengah (opsional)"/>
+
+        <input type="text" pattern="[0-5]{5}" class="chk" > 
+
+        <input type="text" class="srp" placeholder="search produk..."/>
+
+        <input type="text" readonly value="hello world">
     </div>
 
     <script>
