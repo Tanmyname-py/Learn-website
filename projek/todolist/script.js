@@ -15,16 +15,16 @@ document.addEventListener("DOMContentLoaded",() => {
         todosContainer.style.width = taskList.children.length > 0 ? "100%" : "50%";
     }
 
-    const updateProgress = (completedTask = 0 ) => {
-        const totalTasks = taskList.children.length + 1;
-        // const completedTask = taskList.querySelectorAll(`input[type="checkbox"]:checked`).length;
+    const updateProgress = () => {
+        const totalTasks = taskList.children.length;
+        const completedTask = taskList.querySelectorAll(`input[type="checkbox"]:checked`).length;
         progressBar.style.width = totalTasks ? `${(completedTask / totalTasks) * 100}%` : '0%'
         progressNumber.textContent = `${completedTask} / ${totalTasks}`
+        if(totalTasks === completedTask && totalTasks !== 0) celebrateAllTaskDone();
     }
     const addTask = (event) =>  {
         // alert("hello")
         event.preventDefault();
-        updateProgress()
         const taskText = taskInput.value.trim();
         if(!taskText) return;
         const li =  document.createElement("li");
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded",() => {
         </div>`;
         const checkbox = li.querySelector(".checkbox");
         const editBtn = li.querySelector(".edit-btn");
-
+        const task = li.querySelector("span");
 
         checkbox.addEventListener("change",() => {
             // alert("hello")
@@ -46,14 +46,18 @@ document.addEventListener("DOMContentLoaded",() => {
                 // taskList.querySelectorAll("li").forEach((li,idx) => {
                 //     console.log(li.querySelector('input[type="checkbox"]').checked);
                 // })
-                updateProgress()
                 editBtn.disabled = checked
                 editBtn.style.visibility = "hidden";
                 editBtn.classList.add("hidden");
+                task.classList.add("done");
+                updateProgress();
             } else {
                 editBtn.disabled = checked
                 editBtn.style.visibility = "visible";
                 editBtn.classList.remove("hidden");
+                task.classList.remove("done");
+                task.style.textDecoration = "none";
+                updateProgress();
             }
         });
 
@@ -63,17 +67,20 @@ document.addEventListener("DOMContentLoaded",() => {
                 taskInput.focus();
                 li.remove();
                 toggleEmptyState();
+                updateProgress();
             }
         });
 
         li.querySelector(".delete-btn").addEventListener("click",() => {
             li.remove();
             toggleEmptyState();
-        })
+            updateProgress()
+        });
+
         taskList.appendChild(li);
         taskInput.value = '';
         toggleEmptyState()
-
+        updateProgress()
     };
 
     addTaskBtn.addEventListener('click',addTask);

@@ -80,7 +80,7 @@ img.empty-img {
 }
 
 #progress {
-    width: 50%;
+    width: 0%;
     height: 100%;
     background: #ff6f91;
     border-radius: 20px;
@@ -198,9 +198,19 @@ ul#task-list {
 }
 
 #task-list li span {
+    text-decoration: none;
     flex: 1;
     margin-left: 10px;
     word-wrap: break-word;
+}
+
+#task-list li span.done {
+    text-decoration: line-through;
+    flex: 1;
+    margin-left: 10px;
+    word-wrap: break-word;
+    color: #94f794;
+    text-decoration-thickness: 2px;
 }
 
 .task-btn {
